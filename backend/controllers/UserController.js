@@ -2,10 +2,10 @@ const { User } = require("../models")
 const bcrypt = require("bcryptjs");
 
 const signup = async (req, res) => {
-    const { username, firstName, lastName, email, password } = req.body;
+    const { username, firstName, lastName, email, phone, password } = req.body;
 
     try {
-        // Check if user already exists
+        // Check if user already exists using sequelize
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" }); //error codes for debugging
@@ -20,6 +20,7 @@ const signup = async (req, res) => {
             firstName,
             lastName,
             email,
+            phone,
             password: hashedPassword,
         });
 

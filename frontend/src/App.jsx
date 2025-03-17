@@ -1,17 +1,16 @@
-
-import Header from './Header/Header.jsx';
-import LoginBox from './LoginBox/LoginBox.jsx';
-
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginBox from "./LoginBox/LoginBox";
+import SignUpPage from "./Signup/SignUp"; 
 
 function App() {
-  return(
-    <div>  
-    <Header/>
-    <LoginBox/>
-    </div> 
-  );
-  
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<LoginBox />} />
+                <Route path="/signup" element={<SignUpPage />} />
+            </Routes>
+        </Router>
+    );
 }
 
-export default App
+export default App;

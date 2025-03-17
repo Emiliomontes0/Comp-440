@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 function LoginBox(){
     return(
@@ -8,7 +8,7 @@ function LoginBox(){
             </h2>
 
             <h3>
-                New Here? Sign Up Today!
+                New Here? <Link to="/signup">Sign Up Today!</Link>
             </h3>
 
             
