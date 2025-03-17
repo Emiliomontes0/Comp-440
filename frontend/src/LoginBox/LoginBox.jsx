@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import React, { useState } from 'react';
+import './LoginBox.css'; 
     
 function LoginBox(){
         const [username, setUsername] = useState('');
         const [password, setPassword] = useState('');
-        const [error, setError] = useState('');
-        const [success, setSuccess] = useState('');
+        const [statusMessage, setStatusMessage] = useState('');
     
         const handleLogin = async(e) => {
             e.preventDefault();
             if (!username || !password){
-                setError('Please enter username and password.');
+                setStatusMessage('Please enter username and password.');
                 return;
             }
             try{
@@ -21,12 +21,12 @@ function LoginBox(){
                 });
                 const data = await response.json();
                 if (!response.ok){
-                    setError(data.error || 'Login failed. Please try again.');
+                    setStatusMessage(data.error || 'Login failed. Please try again.');
                 } else {
-                    setSuccess('Login succesful!');
+                    setStatusMessage('Login succesful!');
                 }
             } catch (err) {
-                setError('An error occurred. Please try again.')
+                setStatusMessage('An error occurred. Please try again.')
             }
     };
     return(
@@ -39,10 +39,15 @@ function LoginBox(){
                 New Here? <Link to="/signup">Sign Up Today!</Link>
             </h3>
 
-            {error && <p className="error-message">{error}</p>}
-            {success && <p className="success-message">{success}</p>}
-
-
+            {statusMessage && (
+                <p 
+                className={`status-message ${
+                    statusMessage.includes("failed") ? "error" : "success"
+                }`}
+                >
+                    {statusMessage}
+                </p>
+            )}
             
             <form onSubmit={handleLogin} className="login-form">
                 <div className="input-wrapper">
