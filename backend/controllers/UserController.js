@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const { User } = require("../models")
 const bcrypt = require("bcryptjs");
 
@@ -30,6 +31,40 @@ const signup = async (req, res) => {
     }
 };
 
+const login = async (req, res) => {
+    const{username, password} = req.body;
+
+    try{
+        // Check if the user exists
+        const user = await User.findOne({where: {username} });
+        if (!user){
+            return res.status(400).json({message: "Invalid username or password!"});
+        }
+        
+        // Check if password is a match
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch){
+            return res.status(400).json({message: "Invalid password!"});
+        }
+
+        // Returns user info to verify login
+        // DEBUG PURPOSES
+        return res.status(200).json({message: "Login succesful.",
+            user: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                phone: user.phone,
+            }
+        });
+    } catch (error){
+        return res.status(500).json({message: "Server error", error: error.message});
+    }
+}
+
 module.exports = { 
-    signup, //add all function exports here
+    signup,
+    login, //add all function exports here
 };
