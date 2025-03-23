@@ -12,3 +12,6 @@
 - **How to run server**
   - backend use (npm start)
   - frontend use (npm run dev)
+ 
+- **Youtube Phase 1**
+  -https://youtu.be/i6Uj_hDNpBM
