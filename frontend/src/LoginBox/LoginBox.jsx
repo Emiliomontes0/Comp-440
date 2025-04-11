@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import './LoginBox.css'; 
     
@@ -6,6 +6,7 @@ function LoginBox(){
         const [username, setUsername] = useState('');
         const [password, setPassword] = useState('');
         const [statusMessage, setStatusMessage] = useState('');
+        const navigate = useNavigate();
     
         const handleLogin = async(e) => {
             e.preventDefault();
@@ -24,6 +25,9 @@ function LoginBox(){
                     setStatusMessage(data.error || 'Login failed. Please try again.');
                 } else {
                     setStatusMessage('Login succesful!');
+                    
+
+                    navigate('/Menu');
                 }
             } catch (err) {
                 setStatusMessage('An error occurred. Please try again.')
