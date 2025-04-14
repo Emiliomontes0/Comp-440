@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -15,6 +16,10 @@ const SignUp = () => {
     e.preventDefault();
     if (!username || !firstName || !lastName || !email || !phone || !password) {
       setError('Please fill in all fields.');
+      return;
+    }
+    if (password != confirmPassword){
+      setError('Passwords do not match. Verify passwords match and try again.');
       return;
     }
     try {
@@ -100,6 +105,16 @@ const SignUp = () => {
               placeholder="Enter password" 
               required 
             />
+          </div>
+          <div className="input-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm password"
+              required
+              />
           </div>
           <button type="submit" className="signup-button">Sign Up</button>
         </form>
