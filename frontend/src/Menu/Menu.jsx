@@ -15,7 +15,15 @@ function Menu() {
                 <ul>
                     <li><Link to="/view-rentals">View Rental Properties</Link></li>
                     <li><Link to="/place-rentals">List Rental Property</Link></li>
-                    <li><Link to="/search-rentals">Search</Link></li>
+                    <li className = "search-bar">
+                        <Link to = "/search-rentals"></Link>
+                        <input
+                            type ="text"
+                            placeholder = "Search"
+                            className='search-input'
+                        />
+
+                    </li>
                 </ul>
             </div>
 

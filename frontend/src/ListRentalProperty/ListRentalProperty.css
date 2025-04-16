@@ -1,0 +1,22 @@
+.list-form-container{
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-form-container input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #ccc;
+    color:black;
+    font-family: Arial, Helvetica, sans-serif;
+}
+

@@ -16,6 +16,21 @@
     
 }
 
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-input{
+    padding: 6px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px; 
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #ccc;
+}
 
 
 .menu-box ul {
@@ -74,3 +89,4 @@
     height:auto;
     box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
+
