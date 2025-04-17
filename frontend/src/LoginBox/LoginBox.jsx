@@ -25,6 +25,7 @@ function LoginBox(){
                     setStatusMessage(data.error || 'Login failed. Please try again.');
                 } else {
                     setStatusMessage('Login succesful!');
+                    localStorage.setItem('token', data.token);
                     
 
                     navigate('/Menu');

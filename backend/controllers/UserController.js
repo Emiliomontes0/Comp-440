@@ -1,6 +1,7 @@
 const { where } = require("sequelize");
 const { User } = require("../models")
 const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 
 const signup = async (req, res) => {
     const { username, firstName, lastName, email, phone, password } = req.body;
@@ -47,19 +48,24 @@ const login = async (req, res) => {
             return res.status(400).json({message: "Invalid password!"});
         }
 
+        const token = jwt.sign(
+            {id: user.id, username: user.username },
+            process.env.JWT_SECRET,
+            {expiresIn: '1h'}
+        );
+
         // Returns user info to verify login
-        // DEBUG PURPOSES
-        return res.status(200).json({message: "Login succesful.",
+        return res.status(200).json({
+            message: "Login succesful.",
+            token,
             user: {
                 id: user.id,
                 username: user.username,
-                email: user.email,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                phone: user.phone,
+                email: user.email
             }
         });
     } catch (error){
+        console.error("Login Error:", error);
         return res.status(500).json({message: "Server error", error: error.message});
     }
 }

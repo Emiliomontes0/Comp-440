@@ -30,7 +30,7 @@ const addUnit = async (req,res) => {
             return res.status(403).json({message: "You've reached the daily limit of 2 posts a day. Try again tommorow."})
         }
         
-        const newUnit = await.RentalUnit.create({
+        const newUnit = await RentalUnit.create({
             title,
             ownerID: ownerID,
             description,

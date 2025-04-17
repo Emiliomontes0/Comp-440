@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
+const unitRoutes = require("./routes/unitRoutes");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 app.use("/api/users", userRoutes);
 app.use('/api/reviews', reviewRoutes);
+app.use('/api/rentals', unitRoutes);
 
 
 const PORT = process.env.PORT || 4000;

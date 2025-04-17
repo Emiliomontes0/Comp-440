@@ -23,7 +23,7 @@ function ListRentalProperty() {
                 return;
             }
 
-            const response = await fetch('http://localhost:4000/api/rentals', {
+            const response = await fetch('http://localhost:4000/api/rentals/addUnit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
