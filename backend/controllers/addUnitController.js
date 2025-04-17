@@ -4,6 +4,7 @@ const {Op} = require("sequelize");
 
 const addUnit = async (req,res) => {
     try{
+        console.log("Req.user:", req.user);
         const ownerID = req.user.id;
         const {title, description, features, price} = req.body;
 

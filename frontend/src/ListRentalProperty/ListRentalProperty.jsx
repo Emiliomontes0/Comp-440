@@ -41,12 +41,13 @@ function ListRentalProperty() {
 
             if (!response.ok) {
                 setError(data.error || 'Something went wrong here');
+            }else{
+                setSuccess('Rental Listed');
+                setTitle('');
+                setDescription('');
+                setFeatures('');
+                setPrice('');
             }
-            setSuccess('Rental Listed');
-            setTitle('');
-            setDescription('');
-            setFeatures('');
-            setPrice('');
         } catch (err) {
             setError(err.message);
         }

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            tableName: "rentalunits"
+            tableName: "rental_units"
         }
     );
     // Setting foreign key relationship
