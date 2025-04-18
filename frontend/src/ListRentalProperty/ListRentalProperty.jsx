@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ListRentalProperty.css'
+import {useNavigate} from 'react-router-dom';
 
 function ListRentalProperty() {
     const [title, setTitle] = useState('');
@@ -9,6 +10,7 @@ function ListRentalProperty() {
     const [message, setMessage] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -95,6 +97,8 @@ function ListRentalProperty() {
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {success && <p style={{ color: 'green' }}>{success}</p>}
+
+            <button onClick = {() => navigate(-1)} className="back-button-list">Back</button>
         </div>
     );
 }
