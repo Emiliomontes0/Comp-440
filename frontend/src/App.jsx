@@ -4,6 +4,7 @@ import SignUpPage from "./Signup/SignUp";
 import ListRentalProperty from "./ListRentalProperty/ListRentalProperty";
 import Menu from "./Menu/Menu";
 import ViewRentalProperty from "./ViewRentalProperty/ViewRentalProperty";
+import SearchRentalResults from "./SearchRentalResults/SearchRentalResults";
 
 function App() {
     return (
@@ -14,7 +15,7 @@ function App() {
                 <Route path="/menu" element={<Menu />} />
                 <Route path="/view-rentals" element={<ViewRentalProperty />} />
                 <Route path="/place-rentals" element={< ListRentalProperty />} />
-                <Route path="/search-rentals" element={<div> Search </div>} />
+                <Route path="/search-rentals" element={< SearchRentalResults />} />
             </Routes>
         </Router>
     );

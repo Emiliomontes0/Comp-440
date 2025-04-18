@@ -25,7 +25,21 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            tableName: "rental_units"
+            tableName: "rental_units",
+
+            hooks:{
+                beforeCreate: (unit) => {
+                    if(unit.features && Array.isArray(unit.features)){
+                        unit.features = unit.features.map(f => f.toLowerCase());
+                    }
+                },
+                beforeUpdate: (unit) => {
+                    if(unit.features && Array.isArray(unit.features)){
+                        unit.features = unit.features.map(f => f.toLowerCase());
+                    }
+                }
+            }
+
         }
     );
     // Setting foreign key relationship

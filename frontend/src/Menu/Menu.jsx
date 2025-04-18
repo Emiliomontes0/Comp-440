@@ -1,12 +1,18 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import React, {useState} from 'react';
+import { Link,useNavigate } from "react-router-dom";
 import './Menu.css';
 
 function Menu() {
 
-    //Get first and Last name
-    const firstName = localStorage.getItem('firstName');
-    const lastName = localStorage.getItem('lastName');
+    const [searchTerm, setSearchTerm] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        if (e.key === 'Enter' && searchTerm.trim() !== ''){
+            navigate(`/search-rentals?feature=${encodeURIComponent(searchTerm.trim().toLowerCase())}`);
+        }
+    };
+
 
     return (
         <div>
@@ -16,11 +22,13 @@ function Menu() {
                     <li><Link to="/view-rentals">View Rental Properties</Link></li>
                     <li><Link to="/place-rentals">List Rental Property</Link></li>
                     <li className = "search-bar">
-                        <Link to = "/search-rentals"></Link>
                         <input
                             type ="text"
-                            placeholder = "Search"
+                            placeholder = "Search by Feature"
                             className='search-input'
+                            value = {searchTerm}
+                            onChange= {(e) => setSearchTerm(e.target.value)}
+                            onKeyDown={handleSearch}
                         />
 
                     </li>
