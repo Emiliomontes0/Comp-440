@@ -18,11 +18,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.TEXT,
-      allowNull: true,
     },
-  }, {
-    tableName: 'Reviews',
-  });
+  },
+  {
+    tableName: 'reviews',
+  }
+  );
 
   Review.associate = function(models) {
     Review.belongsTo(models.User, { foreignKey: 'userID' });

@@ -3,7 +3,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Reviews', {
+    await queryInterface.createTable('reviews', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -52,7 +52,7 @@ module.exports = {
     });
 
     //constraint for one review per user per rental unit
-    await queryInterface.addConstraint('Reviews', {
+    await queryInterface.addConstraint('reviews', {
       fields: ['userID', 'rentalUnitID'],
       type: 'unique',
       name: 'unique_user_rental_review',
@@ -60,6 +60,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Reviews');
+    await queryInterface.dropTable('reviews');
   },
 };

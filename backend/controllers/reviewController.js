@@ -1,4 +1,4 @@
-const { Review, RentalUnit } = require('../models');
+const { Review, RentalUnit, User} = require('../models');
 const { Op } = require('sequelize');
 
 const createReview = async (req, res) => {
