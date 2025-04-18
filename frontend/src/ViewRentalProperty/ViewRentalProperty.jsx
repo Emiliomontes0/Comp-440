@@ -4,9 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 function ViewRentalProperty() {
   const [rentals, setRentals] = useState([]);
-  const [selectedRental, setSelectedRental] = useState(null); // NEW
-  const [reviews, setReviews] = useState([]); // NEW
+  const [selectedRental, setSelectedRental] = useState(null);
+  const [reviews, setReviews] = useState([]);
   const [error, setError] = useState('');
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [rating, setRating] = useState('');
+  const [description, setDescription] = useState('');
+  const [reviewError, setReviewError] = useState('');
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,12 +36,46 @@ function ViewRentalProperty() {
 
   const handleSelectRental = async (rental) => {
     setSelectedRental(rental);
+    setShowReviewForm(false);
     try {
       const response = await fetch(`http://localhost:4000/api/reviews/rental/${rental.id}`);
       const data = await response.json();
       setReviews(data);
     } catch (err) {
       console.error('Failed to fetch reviews:', err);
+    }
+  };
+
+  const handleSubmitReview = async () => {
+    setReviewError('');
+    try {
+      const response = await fetch('http://localhost:4000/api/reviews', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}` // adjust if needed
+        },
+        body: JSON.stringify({
+          rentalUnitID: selectedRental.id,
+          rating,
+          description
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setReviewError(data.message || 'Failed to submit review');
+        return;
+      }
+
+      // Add new review to the top
+      setReviews(prev => [data, ...prev]);
+      setRating('');
+      setDescription('');
+      setShowReviewForm(false);
+    } catch (err) {
+      setReviewError('Something went wrong.');
     }
   };
 
@@ -50,6 +89,40 @@ function ViewRentalProperty() {
           <p><strong>${selectedRental.price}</strong></p>
 
           <h4>Reviews:</h4>
+
+          <button onClick={() => setShowReviewForm(prev => !prev)} className="add-review-button">
+            {showReviewForm ? 'Cancel' : 'Add Review'}
+          </button>
+
+          {showReviewForm && (
+            <div className="review-form">
+              <label>
+                Rating:
+                <select value={rating} onChange={e => setRating(e.target.value)} required>
+                  <option value="">Select a rating</option>
+                  <option value="excellent">Excellent</option>
+                  <option value="good">Good</option>
+                  <option value="fair">Fair</option>
+                  <option value="poor">Poor</option>
+                </select>
+              </label>
+
+              <label>
+                Description:
+                <textarea
+                  value={description}
+                  onChange={e => setDescription(e.target.value)}
+                  rows={3}
+                  placeholder="Write your review here..."
+                />
+              </label>
+
+              {reviewError && <p style={{ color: 'red' }}>{reviewError}</p>}
+
+              <button onClick={handleSubmitReview}>Submit Review</button>
+            </div>
+          )}
+
           {reviews.length === 0 ? (
             <p>No reviews yet.</p>
           ) : (

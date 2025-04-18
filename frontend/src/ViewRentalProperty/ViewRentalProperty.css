@@ -61,3 +61,28 @@
 .back-button-view:hover {
     background-color: black;
 }
+
+.add-review-button {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.review-form {
+  margin-bottom: 1rem;
+}
+
+.review-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.review-form textarea,
+.review-form select {
+  width: 100%;
+  margin-bottom: 1rem;
+}
