@@ -22,7 +22,7 @@ function LoginBox(){
                 });
                 const data = await response.json();
                 if (!response.ok){
-                    setStatusMessage(data.error || 'Login failed. Please try again.');
+                    setStatusMessage(data.message || 'Login failed. Please try again.');
                 } else {
                     setStatusMessage('Login succesful!');
                     localStorage.setItem('token', data.token);
@@ -47,7 +47,9 @@ function LoginBox(){
             {statusMessage && (
                 <p 
                 className={`status-message ${
-                    statusMessage.includes("failed") ? "error" : "success"
+                    ["failed", "error", "invalid", "doesn't"].some(word =>
+                        statusMessage.toLowerCase().includes(word)
+                      ) ? "error" : "success"
                 }`}
                 >
                     {statusMessage}

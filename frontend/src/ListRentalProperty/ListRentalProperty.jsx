@@ -40,7 +40,7 @@ function ListRentalProperty() {
             const data = await response.json();
 
             if (!response.ok) {
-                setError(data.error || 'Something went wrong here');
+                setError(data.message || 'Something went wrong here');
             }else{
                 setSuccess('Rental Listed');
                 setTitle('');
