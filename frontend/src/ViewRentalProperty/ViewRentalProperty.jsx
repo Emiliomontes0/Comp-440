@@ -87,6 +87,7 @@ function ViewRentalProperty() {
           <p>Description: {selectedRental.description}</p>
           <p>Features: {selectedRental.features.join(', ')}</p>
           <p><strong>${selectedRental.price}</strong></p>
+          <p> Owned by: {selectedRental.owner.firstName} {selectedRental.owner.lastName}</p>
 
           <h4>Reviews:</h4>
 

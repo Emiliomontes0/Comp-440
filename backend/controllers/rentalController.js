@@ -1,8 +1,16 @@
-const {RentalUnit} = require('../models');
+const {RentalUnit, User} = require('../models');
 
 const getAllUnits = async(req,res) => {
     try{
-        const units = await RentalUnit.findAll();
+        const units = await RentalUnit.findAll({
+            include: [
+                {
+                    model: User,
+                    as: 'owner',
+                    attributes: ['id', 'firstName', 'lastName']
+                }
+            ]
+        });
         res.status(200).json(units);
     } catch(error){
         console.error('Error Fetching Rental Units:', error);
