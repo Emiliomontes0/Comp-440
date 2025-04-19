@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ViewRentalProperty.css';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 function ViewRentalProperty() {
   const [rentals, setRentals] = useState([]);
@@ -11,6 +12,7 @@ function ViewRentalProperty() {
   const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
   const [reviewError, setReviewError] = useState('');
+  const{user} = useUser();
 
   const navigate = useNavigate();
 
@@ -70,7 +72,13 @@ function ViewRentalProperty() {
       }
 
       // Add new review to the top
-      setReviews(prev => [data, ...prev]);
+      setReviews(prev => [
+        {
+        ...data,
+        User: user
+        },
+         ...prev
+      ]);
       setRating('');
       setDescription('');
       setShowReviewForm(false);
@@ -120,7 +128,7 @@ function ViewRentalProperty() {
 
               {reviewError && <p style={{ color: 'red' }}>{reviewError}</p>}
 
-              <button onClick={handleSubmitReview}>Submit Review</button>
+              <button className="suit-review-button" onClick={handleSubmitReview}>Submit Review</button>
             </div>
           )}
 

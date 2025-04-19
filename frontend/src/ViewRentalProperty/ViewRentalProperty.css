@@ -85,4 +85,16 @@
 .review-form select {
   width: 100%;
   margin-bottom: 1rem;
+  background-color: rgb(240, 235, 235);
+  color: black;
+}
+
+.submit-review-button{
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #2b6cb0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
