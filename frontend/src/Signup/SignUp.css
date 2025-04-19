@@ -66,6 +66,12 @@
     background: #0056b3;
   }
 
+  .back-button {
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
   .error-message {
     color: red;
     font-size: 14px;
