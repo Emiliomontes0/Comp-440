@@ -23,15 +23,6 @@ module.exports = {
       },
       {
         userID: 1,
-        rentalUnitID: 1,
-        rating: 'fair',
-        description: 'Not bad, but the AC didn’t work.',
-        createdAt: now,
-        updatedAt: now,
-      },
-
-      {
-        userID: 1,
         rentalUnitID: 2,
         rating: 'good',
         description: 'Spacious and family-friendly.',
@@ -48,26 +39,9 @@ module.exports = {
       },
       {
         userID: 2,
-        rentalUnitID: 2,
-        rating: 'fair',
-        description: 'Decent spot but a bit overpriced.',
-        createdAt: now,
-        updatedAt: now,
-      },
-
-      {
-        userID: 2,
         rentalUnitID: 3,
         rating: 'poor',
         description: 'Would not recommend. Smelled like smoke.',
-        createdAt: now,
-        updatedAt: now,
-      },
-      {
-        userID: 1,
-        rentalUnitID: 3,
-        rating: 'good',
-        description: 'Nice location near tech hub.',
         createdAt: now,
         updatedAt: now,
       },
@@ -79,7 +53,6 @@ module.exports = {
         createdAt: now,
         updatedAt: now,
       },
-
       {
         userID: 1,
         rentalUnitID: 4,
@@ -93,14 +66,6 @@ module.exports = {
         rentalUnitID: 4,
         rating: 'excellent',
         description: 'Dreamy view and quiet nights.',
-        createdAt: now,
-        updatedAt: now,
-      },
-      {
-        userID: 2,
-        rentalUnitID: 4,
-        rating: 'fair',
-        description: 'Not as close to the beach as expected.',
         createdAt: now,
         updatedAt: now,
       },
