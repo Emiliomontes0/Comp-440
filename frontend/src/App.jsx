@@ -5,6 +5,7 @@ import ListRentalProperty from "./ListRentalProperty/ListRentalProperty";
 import Menu from "./Menu/Menu";
 import ViewRentalProperty from "./ViewRentalProperty/ViewRentalProperty";
 import SearchRentalResults from "./SearchRentalResults/SearchRentalResults";
+import Queries from "./Queries/Queries";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/view-rentals" element={<ViewRentalProperty />} />
                 <Route path="/place-rentals" element={< ListRentalProperty />} />
                 <Route path="/search-rentals" element={< SearchRentalResults />} />
+                <Route path= "/view-queries" element={<Queries />} />
             </Routes>
         </Router>
     );

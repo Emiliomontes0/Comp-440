@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const unitRoutes = require("./routes/unitRoutes");
 const searchRoutes = require("./routes/searchRoutes");
+const queryRoutes = require("./routes/queryRoutes");
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -15,7 +16,8 @@ app.get("/", (req, res) => {
 app.use("/api/users", userRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/rentals', unitRoutes);
-app.use('/api/search',searchRoutes)
+app.use('/api/search',searchRoutes);
+app.use('/api/query', queryRoutes);
 
 
 const PORT = process.env.PORT || 4000;

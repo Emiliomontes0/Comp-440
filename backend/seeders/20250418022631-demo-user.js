@@ -39,6 +39,17 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        id: 4,
+        username: 'aulloa',
+        password: await bcrypt.hash('monkeys', 10),
+        firstName: 'Alfredo',
+        lastName: 'Ulloa',
+        email: 'alfredoulloa@ymail.com',
+        phone: '(661)406-9264',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
     ]); 
   },
 

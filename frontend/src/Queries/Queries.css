@@ -1,0 +1,43 @@
+
+.query-header h2 {
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.positive-reviews h3 {
+    color: black;
+    font-size: large;
+}
+
+.positive-reviews input {
+    background-color: white;
+    border-color: black;
+    border-radius: 5px;
+    color: black;
+    
+}
+
+.queries-box button{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.selection:hover {
+    background-color: black;
+    color: white;
+}
+
+.positive-units-list{
+    color: black;
+}
+
+.positive-units-list p {
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}
