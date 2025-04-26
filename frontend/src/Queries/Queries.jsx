@@ -93,7 +93,7 @@ function Queries() {
                 <ul>
                   {topUsers.map((user, index) => (
                     <li key={index}>
-                      {user.username || "No user found"}
+                      {user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : "No user found"}
                     </li>
                   ))}
                 </ul>
