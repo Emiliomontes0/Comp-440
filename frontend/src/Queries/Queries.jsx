@@ -77,7 +77,7 @@ function Queries() {
         </div>
 
         <div className='top-users'>
-          <h3> Search for user who has posted the most reviews by date</h3>
+          <h3> Search for user who has posted the most rental units by date</h3>
           <input
           type="date"
           className='selection'
