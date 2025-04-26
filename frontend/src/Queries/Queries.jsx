@@ -33,7 +33,7 @@ function Queries() {
 
   return(
     <div>
-      <button onClick = {() => navigate('/menu')} className="back-button">Return to Menu</button>
+      <button onClick = {() => navigate('/menu')} className="return-button">Return to Menu</button>
       <div className='queries-box'>
 
         <div className='query-header'>
@@ -68,7 +68,7 @@ function Queries() {
               )
             ) : null}
           </div>
-          
+
         </div>
 
         <div className='top-users'>
