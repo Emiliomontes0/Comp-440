@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import './Queries.css'
+import { use } from 'react';
 
 function Queries() {
   const [positiveUnits, setPositiveUnits] = useState([]);
   const [topUsers, setTopUsers] = useState([]);
   const[searchUsername, setSearchUsername] = useState('');
   const [hasSearched, setHasSearched] = useState(false);
+  const [hasSearchedTopUsers, setHasSearchedTopUsers] = useState(false);
+  const [selectedDate, setSelectedDate] = useState('');
   const navigate = useNavigate();
+
 
 
   const fetchPositiveUnits = async (username) => {
@@ -21,11 +25,12 @@ function Queries() {
     }
   };
 
-  const fetchTopPosters = async () => {
+  const fetchTopPosters = async (date) => {
     try {
-      const response = await fetch('http://localhost:4000/api/query/top-posters/2025-04-15');
+      const response = await fetch(`http://localhost:4000/api/query/top-posters/${selectedDate}`);
       const data = await response.json();
       setTopUsers(data);
+      setHasSearchedTopUsers(true);
     } catch (err) {
       console.error('Error fetching top posters:', err);
     }
@@ -72,8 +77,31 @@ function Queries() {
         </div>
 
         <div className='top-users'>
-          <h3> Search for Top Users</h3>
-          <button onClick={fetchTopPosters}>Go</button>
+          <h3> Search for user who has posted the most reviews by date</h3>
+          <input
+          type="date"
+          className='selection'
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+          />
+          <button className='selection' onClick={() => fetchTopPosters(selectedDate)}>Go</button>
+
+          <div className='top-users-list'>
+            
+            {hasSearchedTopUsers ? (
+              topUsers.length > 0 ? (
+                <ul>
+                  {topUsers.map((user, index) => (
+                    <li key={index}>
+                      {user.username || "No user found"}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No users found for selected date</p>
+              )
+            ) : null}
+          </div>
         </div>
       </div>
     </div>

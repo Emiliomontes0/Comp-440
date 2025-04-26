@@ -8,7 +8,7 @@
 
 .positive-reviews h3 {
     color: black;
-    font-size: large;
+    font-size: 16px;
 }
 
 .positive-reviews input {
@@ -54,6 +54,28 @@
 .return-button:hover {
     background-color: black;
     color: white;
+}
+
+.top-users h3{
+    color: black;
+    font-size: 16px;
+}
+.top-users.selection{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.top-users-list{
+    color: black;
+}
+
+.top-users-list p{
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
 }
 
 

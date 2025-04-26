@@ -40,7 +40,13 @@ const getGoodOrBetterReviewsUnits = async (req, res) => {
 };
 
 const getTopPostersOnSpecificDate = async (req, res) => {
+    const {date} = req.params;
+
     try {
+        const startDate = new Date(`${date}T00:00:00`);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 1);
+
         const counts = await RentalUnit.findAll({
             attributes: [
                 'ownerID',
@@ -48,8 +54,8 @@ const getTopPostersOnSpecificDate = async (req, res) => {
             ],
             where: {
                 createdAt: {
-                    [Op.gte]: new Date('2025-04-15T00:00:00'),
-                    [Op.lt]: new Date('2025-04-16T00:00:00')
+                    [Op.gte]: startDate,
+                    [Op.lt]: endDate
                 }
             },
             group: ['ownerID']
