@@ -87,8 +87,20 @@ function ViewRentalProperty() {
     }
   };
 
+  const handleDropdown = (event) => {
+    if (event.target.value === 'most-expensive'){
+      navigate('/rentals/most-expensive');
+    }
+  };
+
   return (
     <div className="rental-list">
+      <div className = "filter-dropdown">
+        <select onChange={handleDropdown}>
+          <option value ="">Sort by...</option>
+          <option value ="most-expensive"> Most Expensive by Feature</option>
+        </select>
+      </div>
       {selectedRental ? (
         <div className="selected-rental">
           <h2>{selectedRental.title}</h2>

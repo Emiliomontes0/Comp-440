@@ -6,6 +6,7 @@ import Menu from "./Menu/Menu";
 import ViewRentalProperty from "./ViewRentalProperty/ViewRentalProperty";
 import SearchRentalResults from "./SearchRentalResults/SearchRentalResults";
 import Queries from "./Queries/Queries";
+import MostExpensiveProperty from "./MostExpensiveProperty/MostExpensiveProperty";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/place-rentals" element={< ListRentalProperty />} />
                 <Route path="/search-rentals" element={< SearchRentalResults />} />
                 <Route path= "/view-queries" element={<Queries />} />
+                <Route path = '/rentals/most-expensive' element = {<MostExpensiveProperty/>} />
             </Routes>
         </Router>
     );
