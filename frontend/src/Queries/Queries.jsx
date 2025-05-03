@@ -11,6 +11,9 @@ function Queries() {
   const [hasSearched, setHasSearched] = useState(false);
   const [hasSearchedTopUsers, setHasSearchedTopUsers] = useState(false);
   const [selectedDate, setSelectedDate] = useState('');
+  const [feature1,setFeature1] = useState('');
+  const [feature2,setFeature2] = useState('');
+  const [featureResults, setFeatureResults] = useState([]);
   const navigate = useNavigate();
 
 
@@ -34,6 +37,20 @@ function Queries() {
     } catch (err) {
       console.error('Error fetching top posters:', err);
     }
+  };
+
+  const fetchTwoFeatures = async () => {
+    try{
+      const response = await fetch (
+        `http://localhost:4000/api/feature/units-by-features?feature1=${feature1}&feature2=${feature2}`
+      );
+      const data = await response.json();
+      console.log("Data:", data);
+      setFeatureResults(data);
+    } catch (err){
+      console.error ('Error fetching listings', err);
+    }
+
   };
 
   return(
@@ -101,6 +118,44 @@ function Queries() {
                 <p>No users found for selected date</p>
               )
             ) : null}
+          </div>
+        </div>
+
+        <div className = 'feature-search'>
+          <h3>Find 2 Users Posted on the Same Day</h3>
+          <input
+            type = "text"
+            placeholder = "Enter Feature 1"
+            value = {feature1}
+            onChange ={(e) => setFeature1(e.target.value)}
+            className = "feature-input"
+            />
+          <input
+            type = "text"
+            placeholder = "Enter Feature 2"
+            value = {feature2}
+            onChange ={(e) => setFeature2(e.target.value)}
+            className = "feature-input"
+            />
+          
+          <button className = 'feature-Selection' onClick={fetchTwoFeatures}>Search</button>
+          <div className = 'feature-results-list'>
+            {featureResults.length > 0 ? (
+              <ul>
+                {featureResults.map((result, index) => (
+                  <li key ={index}>
+                    <strong>User:</strong> {result.user.firstName}{result.user.lastName}<br />
+                    <strong>Listing:</strong> {result.unit.title || "Unititled"}<br />
+                    <strong>Listed On:</strong> {new Date(result.unit.createdAt).toLocaleDateString()}<br />
+                    <strong>Features:</strong> {result.unit?.features?.join(', '|| 'None')}<br />
+                    <strong>Description:</strong>{result.unit?.description || "None"}<br />
+                    <strong>Price:</strong> ${Number(result.unit?.price).toFixed(2)|| '0.00'}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p>No matching listings found</p>
+            )}
           </div>
         </div>
       </div>

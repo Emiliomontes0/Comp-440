@@ -6,6 +6,7 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const unitRoutes = require("./routes/unitRoutes");
 const searchRoutes = require("./routes/searchRoutes");
 const queryRoutes = require("./routes/queryRoutes");
+const sameDayFeatureRoutes = require('./routes/sameDayFeatureRoutes');
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -18,6 +19,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/rentals', unitRoutes);
 app.use('/api/search',searchRoutes);
 app.use('/api/query', queryRoutes);
+app.use('/api/feature',sameDayFeatureRoutes);
 
 
 const PORT = process.env.PORT || 4000;

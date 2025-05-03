@@ -78,4 +78,43 @@
     font-style: italic;
 }
 
+.feature-search h3 {
+    color: black;
+    font-size: 16px;
+    margin-top: 20px;
+}
 
+.feature-input {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 5px;
+    margin: 5px 10px 10px 0;
+}
+
+.feature-selection {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid black;
+}
+
+.feature-selection:hover {
+    background-color: black;
+    color: white;
+}
+
+.feature-results-list {
+    color: black;
+    margin-top: 10px;
+}
+
+.feature-results-list p {
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}
