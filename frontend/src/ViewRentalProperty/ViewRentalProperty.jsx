@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './ViewRentalProperty.css';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
 
 function ViewRentalProperty() {
   const [rentals, setRentals] = useState([]);
@@ -11,6 +12,7 @@ function ViewRentalProperty() {
   const [rating, setRating] = useState('');
   const [description, setDescription] = useState('');
   const [reviewError, setReviewError] = useState('');
+  const{user} = useUser();
 
   const navigate = useNavigate();
 
@@ -70,7 +72,13 @@ function ViewRentalProperty() {
       }
 
       // Add new review to the top
-      setReviews(prev => [data, ...prev]);
+      setReviews(prev => [
+        {
+        ...data,
+        User: user
+        },
+         ...prev
+      ]);
       setRating('');
       setDescription('');
       setShowReviewForm(false);
@@ -79,14 +87,27 @@ function ViewRentalProperty() {
     }
   };
 
+  const handleDropdown = (event) => {
+    if (event.target.value === 'most-expensive'){
+      navigate('/rentals/most-expensive');
+    }
+  };
+
   return (
     <div className="rental-list">
+      <div className = "filter-dropdown">
+        <select onChange={handleDropdown}>
+          <option value ="">Sort by...</option>
+          <option value ="most-expensive"> Most Expensive by Feature</option>
+        </select>
+      </div>
       {selectedRental ? (
         <div className="selected-rental">
           <h2>{selectedRental.title}</h2>
           <p>Description: {selectedRental.description}</p>
           <p>Features: {selectedRental.features.join(', ')}</p>
           <p><strong>${selectedRental.price}</strong></p>
+          <p> Owned by: {selectedRental.owner.firstName} {selectedRental.owner.lastName}</p>
 
           <h4>Reviews:</h4>
 
@@ -119,7 +140,7 @@ function ViewRentalProperty() {
 
               {reviewError && <p style={{ color: 'red' }}>{reviewError}</p>}
 
-              <button onClick={handleSubmitReview}>Submit Review</button>
+              <button className="suit-review-button" onClick={handleSubmitReview}>Submit Review</button>
             </div>
           )}
 

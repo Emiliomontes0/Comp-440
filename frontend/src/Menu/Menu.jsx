@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { Link,useNavigate } from "react-router-dom";
+import { useUser } from '../context/UserContext';
 import './Menu.css';
 
 function Menu() {
-
+    const {user, logoutUser} = useUser();
     const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
@@ -12,13 +13,23 @@ function Menu() {
             navigate(`/search-rentals?feature=${encodeURIComponent(searchTerm.trim().toLowerCase())}`);
         }
     };
-
+    
+    const handleLogout = () => {
+        logoutUser();
+        navigate('/login');
+    };
 
     return (
         <div>
             <div className="menu-box">
+                <div className="menu-header">
                 <h2>Home</h2>
+                <h4>Welcome{user && user.firstName ? `, ${user.firstName}` : ""}</h4>
+                <button className="logout-button" onClick={handleLogout}>Logout</button>
+                </div>
+                
                 <ul>
+                    <li> <Link to="/view-queries">Look up Queries</Link></li>
                     <li><Link to="/view-rentals">View Rental Properties</Link></li>
                     <li><Link to="/place-rentals">List Rental Property</Link></li>
                     <li className = "search-bar">

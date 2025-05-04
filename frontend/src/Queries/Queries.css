@@ -1,0 +1,120 @@
+
+.query-header h2 {
+    color: blue;
+    font-size: 24px;
+    font-weight: bold;
+
+}
+
+.positive-reviews h3 {
+    color: black;
+    font-size: 16px;
+}
+
+.positive-reviews input {
+    background-color: white;
+    border-color: black;
+    border-radius: 5px;
+    color: black;
+    
+}
+
+.selection{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.selection:hover {
+    background-color: black;
+    color: white;
+}
+
+.positive-units-list{
+    color: black;
+}
+
+.positive-units-list p {
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.return-button{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.return-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.top-users h3{
+    color: black;
+    font-size: 16px;
+}
+.top-users.selection{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.top-users-list{
+    color: black;
+}
+
+.top-users-list p{
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.feature-search h3 {
+    color: black;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.feature-input {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 5px;
+    margin: 5px 10px 10px 0;
+}
+
+.feature-selection {
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 6px 12px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border: 1px solid black;
+}
+
+.feature-selection:hover {
+    background-color: black;
+    color: white;
+}
+
+.feature-results-list {
+    color: black;
+    margin-top: 10px;
+}
+
+.feature-results-list p {
+    color: red;
+    margin-top: 10px;
+    font-style: italic;
+}

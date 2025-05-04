@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.css'; 
 
 const SignUp = () => {
@@ -11,6 +12,7 @@ const SignUp = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +34,8 @@ const SignUp = () => {
       if (!response.ok) {
         setError(data.error || 'Sign up failed. Please try again.');
       } else {
-        setSuccess('Sign up successful!');
+        setSuccess('Sign up successful!\n Redirecting back to login...');
+        setTimeout(() => navigate('/login'), 3000);
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -117,6 +120,8 @@ const SignUp = () => {
               />
           </div>
           <button type="submit" className="signup-button">Sign Up</button>
+          <button onClick = {() => navigate('/login')} className="back-button">Return to Login</button>
+
         </form>
       </div>
     </div>
