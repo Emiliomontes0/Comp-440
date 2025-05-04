@@ -32,6 +32,7 @@ function Menu() {
                     <li> <Link to="/view-queries">Look up Queries</Link></li>
                     <li><Link to="/view-rentals">View Rental Properties</Link></li>
                     <li><Link to="/place-rentals">List Rental Property</Link></li>
+                    <li><Link to="/user-reports">User Reports</Link></li>
                     <li className = "search-bar">
                         <input
                             type ="text"
