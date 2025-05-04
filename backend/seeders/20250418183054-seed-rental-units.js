@@ -44,6 +44,16 @@ module.exports = {
         price: 2100.00,
         createdAt: now,
         updatedAt: now,
+      },
+      {
+        id: 5,
+        ownerID: 3,
+        title: 'Beachside Bungalow',
+        description: 'Live by the waves in this cozy beachside spot. Great for remote workers.',
+        features: ['ocean view', 'AC', 'hammock'],
+        price: 2100.00,
+        createdAt: now,
+        updatedAt: now,
       }
     ], {});
   },

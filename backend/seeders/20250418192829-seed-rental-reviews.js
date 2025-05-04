@@ -69,6 +69,22 @@ module.exports = {
         createdAt: now,
         updatedAt: now,
       },
+      {
+        userID: 4,
+        rentalUnitID: 5,
+        rating: 'poor',
+        description: 'Horrible smell and dirty kitchen.',
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        userID: 2,
+        rentalUnitID: 5,
+        rating: 'poor',
+        description: 'No heating and rude landlord.',
+        createdAt: now,
+        updatedAt: now,
+      }
     ]);
   },
 

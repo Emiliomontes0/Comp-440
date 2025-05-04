@@ -76,20 +76,22 @@ const login = async (req, res) => {
 const getUsersWithOnlyPoorReviews = async (req, res) => {
   try {
     const users = await User.findAll({
-      include: [
-        {
-          model: Review,
-          required: true,
-          where: { rating: 'poor' }
-        }
-      ],
-      where: {
-        [Op.notExists]: sequelize.literal(`
-          SELECT 1 FROM reviews AS r
-          WHERE r."userID" = "User"."id" AND r.rating <> 'poor'
+        include: [
+          {
+            model: Review,
+            as: 'reviews',
+            required: true,
+            where: { rating: 'poor' }
+          }
+        ],
+        where: sequelize.literal(`
+          NOT EXISTS (
+            SELECT 1 FROM reviews AS r
+            WHERE r."userID" = "User"."id" AND r.rating <> 'poor'
+          )
         `)
-      }
-    });
+      });
+      
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -99,21 +101,21 @@ const getUsersWithOnlyPoorReviews = async (req, res) => {
 const getUsersWithNoPoorReviewsOnUnits = async (req, res) => {
   try {
     const users = await User.findAll({
-      include: [
-        {
-          model: RentalUnit,
-          as: 'rental_units',
-          required: true,
-        }
-      ],
-      where: {
-        [Op.notExists]: sequelize.literal(`
-          SELECT 1 FROM rental_units ru
-          JOIN reviews r ON r."rentalUnitID" = ru.id
-          WHERE ru."ownerID" = "User"."id" AND r.rating = 'poor'
+        include: [
+          {
+            model: RentalUnit,
+            as: 'rental_units',
+            required: true,
+          }
+        ],
+        where: sequelize.literal(`
+          NOT EXISTS (
+            SELECT 1 FROM rental_units ru
+            JOIN reviews r ON r."rentalUnitID" = ru.id
+            WHERE ru."ownerID" = "User"."id" AND r.rating = 'poor'
+          )
         `)
-      }
-    });
+      });
     res.status(200).json(users);
   } catch (err) {
     res.status(500).json({ error: err.message });
