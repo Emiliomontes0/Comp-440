@@ -17,54 +17,45 @@ const getUnitsByFeaturesSameDay = async (req,res) => {
             }
         });
 
-        const pairs =[];
+        const userUnitsByDate ={};
+        const matchingUsers =[];
 
-        for (let i = 0; i < units.length; i++) {
-          for (let j = i + 1; j < units.length; j++) {
-            const date1 = new Date(units[i].createdAt).toDateString();
-            const date2 = new Date(units[j].createdAt).toDateString();
+        for (const unit of units){
+          const userId = unit.owner.id;
+          const dateKey = new Date(unit.createdAt).toDateString();
+          const key = `${userId}-${dateKey}`;
 
-            const hasBothFeatures =
-            (units[i].features.includes(feature1) && units[j].features.includes(feature2)) ||
-            (units[i].features.includes(feature2) && units[j].features.includes(feature1));
-    
-            if (
-              date1 === date2 && 
-              hasBothFeatures
-            ) {
-              pairs.push({
-                unit: {
-                    title: units[i].title,
-                    description: units[i].description,
-                    price: units[i].price,
-                    features: units[i].features,
-                    createdAt: units[i].createdAt
-              },
-              user:{
-                firstName: units[i].owner.firstName,
-                lastName: units[i].owner.lastName
-              }
+          if(!userUnitsByDate[key]){
+            userUnitsByDate[key] = {
+              user:unit.owner,
+              units:[]
+            };
+          }
+
+          userUnitsByDate[key].units.push(unit);
+        }
+
+
+        for (const value of Object.values(userUnitsByDate)){
+          const {user, units} = value;
+          let hasFeature1 = false;
+          let hasFeature2 = false;
+
+          for (const unit of units){
+            if(unit.features.includes(feature1)) hasFeature1 = true;
+            if(unit.features.includes(feature2)) hasFeature2 = true;
+          }
+
+          if (hasFeature1 && hasFeature2){
+            matchingUsers.push({
+              firstName : user.firstName,
+              lastName: user.lastName
             });
-            pairs.push({
-                unit: {
-                  title: units[j].title,
-                  description: units[j].description,
-                  price: units[j].price,
-                  features: units[j].features,
-                  createdAt: units[j].createdAt
-                },
-                user: {
-                  firstName: units[j].owner.firstName,
-                  lastName: units[j].owner.lastName
-                }
-              });
-    
-              return res.json(pairs); 
-            }
+
           }
         }
     
-        res.json([]); 
+        res.json(matchingUsers)
       } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Error searching by features' });

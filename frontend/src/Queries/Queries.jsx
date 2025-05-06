@@ -122,7 +122,7 @@ function Queries() {
         </div>
 
         <div className = 'feature-search'>
-          <h3>Find 2 Users Posted on the Same Day</h3>
+          <h3>Find Users Who Posted 2 Features on Same Day</h3>
           <input
             type = "text"
             placeholder = "Enter Feature 1"
@@ -142,14 +142,10 @@ function Queries() {
           <div className = 'feature-results-list'>
             {featureResults.length > 0 ? (
               <ul>
-                {featureResults.map((result, index) => (
+                {featureResults.map((user, index) => (
                   <li key ={index}>
-                    <strong>User:</strong> {result.user.firstName}{result.user.lastName}<br />
-                    <strong>Listing:</strong> {result.unit.title || "Unititled"}<br />
-                    <strong>Listed On:</strong> {new Date(result.unit.createdAt).toLocaleDateString()}<br />
-                    <strong>Features:</strong> {result.unit?.features?.join(', '|| 'None')}<br />
-                    <strong>Description:</strong>{result.unit?.description || "None"}<br />
-                    <strong>Price:</strong> ${Number(result.unit?.price).toFixed(2)|| '0.00'}
+                    {user.firstName} {user.lastName}
+                   
                   </li>
                 ))}
               </ul>
