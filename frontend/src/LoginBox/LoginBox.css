@@ -36,3 +36,7 @@
     background-color: black;
     color: white;
 }
+
+.login-box a {
+    color: blue;
+}
