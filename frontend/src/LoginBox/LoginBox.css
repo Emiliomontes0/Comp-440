@@ -16,3 +16,23 @@
     background-color:azure;
 
 }
+
+.login-form input{
+    background-color: white;
+    color: black;
+}
+
+.login-button{
+    background-color: rgb(193, 182, 182);
+    color: black;
+    border: 2px solid rgb(125, 121, 121);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: black;
+    color: white;
+}
