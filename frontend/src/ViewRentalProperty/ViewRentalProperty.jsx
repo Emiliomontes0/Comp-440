@@ -107,6 +107,7 @@ function ViewRentalProperty() {
           <p>Description: {selectedRental.description}</p>
           <p>Features: {selectedRental.features.join(', ')}</p>
           <p><strong>${selectedRental.price}</strong></p>
+          <p>Listed on: {new Date(selectedRental.createdAt).toLocaleDateString()}</p>
           <p> Owned by: {selectedRental.owner.firstName} {selectedRental.owner.lastName}</p>
 
           <h4>Reviews:</h4>
@@ -169,6 +170,7 @@ function ViewRentalProperty() {
             <p>Description: {rental.description}</p>
             <p>Features: {rental.features.join(', ')}</p>
             <p><strong>${rental.price}</strong></p>
+            <p>Listed on: {new Date(rental.createdAt).toLocaleDateString()}</p>
           </div>
         ))
       )}

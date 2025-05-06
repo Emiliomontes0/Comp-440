@@ -24,6 +24,7 @@
     width: 100%;
     max-width: 400px;
     margin-left:0;
+    cursor: pointer;
   }
   
   .rental-show:hover {

@@ -9,9 +9,15 @@ const signup = async (req, res) => {
 
     try {
         // Check if user already exists using sequelize
-        const existingUser = await User.findOne({ where: { email } });
+        // No duplicate email or phone number
+        const existingUser = await User.findOne({ 
+          where: {
+            [Op.or]: [{ email }, { phone }]
+          }
+        });
         if (existingUser) {
-            return res.status(400).json({ message: "User already exists" }); //error codes for debugging
+          const conflictField = existingUser.email === email ? "email" : "phone number";
+          return res.status(400).json({ message: `User with given ${conflictField} already exists!` });
         }
 
         // Hashes password

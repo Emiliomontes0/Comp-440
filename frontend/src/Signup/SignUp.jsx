@@ -32,7 +32,7 @@ const SignUp = () => {
       });
       const data = await response.json();
       if (!response.ok) {
-        setError(data.error || 'Sign up failed. Please try again.');
+        setError(data.message || 'Sign up failed. Please try again.');
       } else {
         setSuccess('Sign up successful!\n Redirecting back to login...');
         setTimeout(() => navigate('/login'), 3000);
@@ -91,7 +91,7 @@ const SignUp = () => {
           </div>
           <div className="input-group">
             <label>Phone Number</label>
-            <input 
+            <input
               type="phone" 
               value={phone} 
               onChange={(e) => setPhone(e.target.value)} 
