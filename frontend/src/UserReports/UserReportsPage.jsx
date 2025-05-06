@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './UserReportsPage.css';
+import { useNavigate } from 'react-router-dom';
 
 const UserReportsPage = () => {
   const [poorReviewers, setPoorReviewers] = useState([]);
   const [cleanLandlords, setCleanLandlords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -31,6 +33,7 @@ const UserReportsPage = () => {
 
   return (
     <div className="user-reports-container">
+      <button onClick = {() => navigate('/menu')} className="return-button">Return to Menu</button>
       <h1>User Reports</h1>
 
       {loading ? (
